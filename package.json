@@ -1,0 +1,11 @@
+{
+  "name": "nodebot",
+  "version": "0.0.1",
+  "description": "Node IRC bot prototype",
+  "main": "irc.js",
+  "repository": "",
+  "author": "Ashley Davis <ashley@airsi.de>",
+  "dependencies": {
+    "irc":"~0.3.6"
+  }
+}
