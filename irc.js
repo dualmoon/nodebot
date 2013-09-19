@@ -59,7 +59,8 @@ var onMessage = function(from, to, message){
                         if(Object.keys(mod.commands).length>0){
                             modules.push(mod);
                             for (var command in mod.commands){
-                                globalDict[command] = mod[command];
+                                //TODO: Check if the command exists
+                                globalDict[command] = {name: mod.name, index: modules.indexOf(mod)};
                             }
                         }
                     }catch(err){
@@ -74,8 +75,10 @@ var onMessage = function(from, to, message){
             default:
                 //TODO: check globalDict for command
                 //
-                if(globalDict.hasOwnProperty(c)){
-                    globalDict[c]();
+                if(c in globalDict){
+                    var mod = modules[globalDict[c].index];
+                    var command = mod.commands[c];
+                    command(bot,from,to,message);
                 }else{
                     bot.say(to, "command not found.");
                 }
