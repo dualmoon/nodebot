@@ -1,6 +1,7 @@
 var Config = {
     server: 'irc.nixtrixirc.net',
-    prefix: '@@',
+    prefix: '!',
+    loudCommandNotFound: false,
     debug: true
 };
 
@@ -15,7 +16,7 @@ var debug = {
 var irc = require('irc');
 var bot = new irc.Client(Config.server, 'nodebot', {
     channels: ['#anarchy'],
-    debug: true
+    debug: false
 });
 var bots = [], globalDict = {}, modules = [];
 var fs = require('fs'),
@@ -75,12 +76,14 @@ var onMessage = function(from, to, message){
             default:
                 //TODO: check globalDict for command
                 //
-                if(c in globalDict){
+                if (c in globalDict) {
                     var mod = modules[globalDict[c].index];
                     var command = mod.commands[c];
                     command(bot,from,to,message);
-                }else{
-                    bot.say(to, "command not found.");
+                } else {
+                    if(Config.loudCommandNotFound) { 
+                        bot.say(to, "command not found.") 
+                    };
                 }
         }
     }
