@@ -5,6 +5,7 @@ var Config = {
     debug: true
 };
 
+
 var debug = {
     log: function(t){
         if(Config.debug){
@@ -12,7 +13,7 @@ var debug = {
         }
     }
 };
-
+ 
 var irc = require('irc');
 var bot = new irc.Client(Config.server, 'nodebot', {
     channels: ['#anarchy'],
