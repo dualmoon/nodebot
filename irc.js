@@ -5,6 +5,7 @@ var Config = {
     debug: true
 };
 
+
 var debug = {
     log: function(t){
         if(Config.debug){
@@ -12,7 +13,7 @@ var debug = {
         }
     }
 };
-
+ 
 var irc = require('irc');
 var bot = new irc.Client(Config.server, 'nodebot', {
     channels: ['#anarchy'],
@@ -82,8 +83,8 @@ var onMessage = function(from, to, message){
                     command(bot,from,to,message);
                 } else {
                     if(Config.loudCommandNotFound) { 
-                        bot.say(to, "command not found.") 
-                    };
+                        bot.say(to, "command not found.");
+                    }
                 }
         }
     }
