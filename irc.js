@@ -82,8 +82,8 @@ var onMessage = function(from, to, message){
                     command(bot,from,to,message);
                 } else {
                     if(Config.loudCommandNotFound) { 
-                        bot.say(to, "command not found.") 
-                    };
+                        bot.say(to, "command not found.");
+                    }
                 }
         }
     }
